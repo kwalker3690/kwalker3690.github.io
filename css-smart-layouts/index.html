@@ -15,6 +15,10 @@
   .tag { font-size: 12px; color: #7a7a8b; text-transform: none; font-weight: 400; margin-left: 8px; }
   .card { margin: 18px 0 26px; }
   .cap { font-size: 13px; color: #b9b9c8; margin-bottom: 8px; font-weight: 600; }
+  .note { font-size: 13px; color: #9a9aab; margin: 10px 2px 0; max-width: 900px; }
+  .note code { background: #1d1d26; padding: 0 4px; border-radius: 3px; font-size: 12px; color: #c9c9e0; }
+  .principle { max-width: 1100px; margin: 18px auto 0; padding: 14px 18px; background: #15151d; border: 1px solid #25252f; border-left: 3px solid #4b6bff; border-radius: 8px; font-size: 14px; color: #c4c4d2; }
+  .principle strong { color: #e9e9f0; }
   .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   figure { margin: 0; background: #16161d; border: 1px solid #25252f; border-radius: 10px; overflow: hidden; }
   figcaption { padding: 7px 12px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #7a7a8b; }
@@ -26,8 +30,15 @@
   <h1>One smart layout, many decks</h1>
   <p>Each pair below is a real pitch-deck card (left) recreated (right) using a single
   Gamma <code>cssFlex</code> smart-layout variant plus <strong>card-level custom CSS only</strong> —
-  no per-deck code. Same flexbox engine restyled into three very different aesthetics.
-  Two-column cards use Gamma's native column node; everything else is one cssFlex layout.</p>
+  no per-deck code. Same flexbox engine restyled into three very different aesthetics.</p>
+  <div class="principle">
+    <strong>What the card CSS does:</strong> color (text, accents, backgrounds),
+    typography (family, size, weight, spacing, case), and light decoration (borders /
+    dividers, header bands, ✕ / ✓ <code>::before</code> markers).<br>
+    <strong>What it does not do:</strong> no <code>display:grid</code>, <code>flex</code>,
+    or column rules. All structure — column counts, the 2×2, the two-column split —
+    comes from the layout’s own <code>cellSize</code> option and Gamma’s native column node.
+  </div>
 </header>
 <main>
 
@@ -40,6 +51,7 @@
       <figure><figcaption>Original reference</figcaption><img loading="lazy" src="o_venture_hero.png"></figure>
       <figure><figcaption>cssFlex recreation</figcaption><img loading="lazy" src="r_venture_hero.png"></figure>
     </div>
+    <p class="note">Color + type only: blue eyebrow & stat numbers, navy title, uppercase labels, and 1px vertical dividers between cells. The 3-across row is the smart layout’s own <code>cellSize</code> — not CSS.</p>
   </div>
   <div class="card">
     <div class="cap">Problem — sentence stats</div>
@@ -47,13 +59,15 @@
       <figure><figcaption>Original reference</figcaption><img loading="lazy" src="o_venture_problem.png"></figure>
       <figure><figcaption>cssFlex recreation</figcaption><img loading="lazy" src="r_venture_problem.png"></figure>
     </div>
+    <p class="note">Same recipe as the hero, just sentence-case stat descriptions instead of short labels. Color + type + the cell dividers.</p>
   </div>
   <div class="card">
-    <div class="cap">Traction — 2×2 grid (column node)</div>
+    <div class="cap">Traction — 2×2 grid</div>
     <div class="pair">
       <figure><figcaption>Original reference</figcaption><img loading="lazy" src="o_venture_traction.png"></figure>
       <figure><figcaption>cssFlex recreation</figcaption><img loading="lazy" src="r_venture_traction.png"></figure>
     </div>
+    <p class="note">Color + type + “cross” dividers (1px borders on the right column and second row). The text/stats split is a real <strong>column node</strong>; the 2×2 is the layout’s <code>cellSize</code>. CSS draws dividers and recolors — it adds no grid.</p>
   </div>
   <div class="card">
     <div class="cap">Comparison — banded table</div>
@@ -61,6 +75,7 @@
       <figure><figcaption>Original reference</figcaption><img loading="lazy" src="o_venture_comparison.png"></figure>
       <figure><figcaption>cssFlex recreation</figcaption><img loading="lazy" src="r_venture_comparison.png"></figure>
     </div>
+    <p class="note">The most decorative card: 1px cell borders + radius, gray/blue header bands (backgrounds), row separators, and ✕ / ✓ markers via <code>::before</code>. Still the layout’s own two cells — CSS only paints them.</p>
   </div>
 </section>
 <section>
@@ -72,6 +87,7 @@
       <figure><figcaption>Original reference</figcaption><img loading="lazy" src="o_thesis_giant.png"></figure>
       <figure><figcaption>cssFlex recreation</figcaption><img loading="lazy" src="r_thesis_giant.png"></figure>
     </div>
+    <p class="note">Font swap to serif, gold/ink colors, a cream card background, and center alignment (<code>text-align</code> + <code>margin</code>). One cell — no layout change.</p>
   </div>
   <div class="card">
     <div class="cap">Old way / new way</div>
@@ -79,6 +95,7 @@
       <figure><figcaption>Original reference</figcaption><img loading="lazy" src="o_thesis_oldnew.png"></figure>
       <figure><figcaption>cssFlex recreation</figcaption><img loading="lazy" src="r_thesis_oldnew.png"></figure>
     </div>
+    <p class="note">Serif font, gold eyebrows, ink titles, cream background, and one 1px divider between the two cells. The two columns are the layout’s cells.</p>
   </div>
 </section>
 <section>
@@ -90,6 +107,7 @@
       <figure><figcaption>Original reference</figcaption><img loading="lazy" src="o_signal_giant.png"></figure>
       <figure><figcaption>cssFlex recreation</figcaption><img loading="lazy" src="r_signal_giant.png"></figure>
     </div>
+    <p class="note">Color + type only: a vivid-purple number scaled up, a sentence-case caption, and a small-caps source footer.</p>
   </div>
   <div class="card">
     <div class="cap">Without us / with us</div>
@@ -97,6 +115,7 @@
       <figure><figcaption>Original reference</figcaption><img loading="lazy" src="o_signal_withwith.png"></figure>
       <figure><figcaption>cssFlex recreation</figcaption><img loading="lazy" src="r_signal_withwith.png"></figure>
     </div>
+    <p class="note">Color + type, plus a monospace font swap on the last two lines (the code). The two columns are the layout’s cells.</p>
   </div>
 </section>
 </main>
